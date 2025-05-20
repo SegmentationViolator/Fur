@@ -1,0 +1,22 @@
+(*
+  Name: Ferrum
+  Description: An interpreted general-purpose programming language
+*)
+
+Lines          = Statements;
+
+Statements     = Statement Statements | Statement;
+
+Statement      = Expr ';';
+
+BinaryOperator = '+' | '-' | '*' | '/'; (* Precedence: '*', '/' -> '+', '-' *)
+
+Expr           = Expr BinaryOperator Value | Value;
+
+UnaryOperator  = '-'; (* Precedence: '-' *)
+
+Value          = UnaryOperator Value | Integer | Null | '(' Expr ')';
+
+Integer        = [1-9], [0-9]*
+
+Null           = '(', ')'
